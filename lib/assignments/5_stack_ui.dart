@@ -2,10 +2,6 @@
 
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const StackUI());
-}
-
 class StackUI extends StatelessWidget {
   const StackUI({
     Key? key,
