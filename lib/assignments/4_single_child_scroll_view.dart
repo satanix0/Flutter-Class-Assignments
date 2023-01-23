@@ -13,15 +13,23 @@ class SingleChildScrollDemo extends StatelessWidget {
       home: Scaffold(
         body: SafeArea(
           child: Container(
-            color: Colors.yellow,
-            width: 150,
+            color: Colors.grey.shade300,
             child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
               physics: BouncingScrollPhysics(),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ...getMyWidgets(),
+                  // Scorll Effect in Horizontal
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        ...getContainerForRow(),
+                      ],
+                    ),
+                  ),
+                  // triple dot(...) allows the column to have more CHildren than returned by the function.
+                  ...getContainerForCol(),
                   SizedBox(
                     height: 20,
                   ),
@@ -45,29 +53,57 @@ class SingleChildScrollDemo extends StatelessWidget {
   }
 }
 
-// This Function Returns the List of Containers to the main
-List<Widget> getMyWidgets() {
-  List<Color> myContainerColors = [
-    Colors.amber,
-    Colors.black,
-    Colors.blue,
-    Colors.green,
-    Colors.pink,
-    Colors.indigo,
-    Colors.teal,
-    Colors.yellow,
-  ];
+// A list of Colors.
+List<Color> myContainerColors = [
+  Colors.amber,
+  Colors.black,
+  Colors.blue,
+  Colors.green,
+  Colors.pink,
+  Colors.indigo,
+  Colors.teal,
+  Colors.yellow,
+  Colors.orange,
+];
 
-  List<Widget> myResult = [];
+// This Function Returns the List of Containers as Children of the Column to the main
+List<Widget> getContainerForCol() {
+  // List of Containers to be returned
+  List<Widget> ContainersForCol = [];
 
   for (var i = 0; i < myContainerColors.length; i++) {
-    myResult.add(Container(
-      width: 100,
-      height: 100,
-      color: myContainerColors[i],
-      child: Center(child: Text("${i + 1}")),
-    ));
+    ContainersForCol.add(
+      Container(
+        height: 200,
+        margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+        color: myContainerColors[i],
+        child: Center(
+          child: Text("${i + 1}"),
+        ),
+      ),
+    );
+  }
+  return ContainersForCol;
+}
+
+// Similar Function fo the row.
+List<Widget> getContainerForRow() {
+  // List of Containers to be returned
+  List<Widget> ContainersForRow = [];
+
+  for (var i = 0; i < myContainerColors.length; i++) {
+    ContainersForRow.add(
+      Container(
+        height: 200,
+        width: 200,
+        margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+        color: myContainerColors[i],
+        child: Center(
+          child: Text("${i + 1}"),
+        ),
+      ),
+    );
   }
 
-  return myResult;
+  return ContainersForRow;
 }
