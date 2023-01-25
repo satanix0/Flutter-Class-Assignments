@@ -10,9 +10,14 @@ void main(List<String> args) {
   );
 }
 
-class Screen1 extends StatelessWidget {
-  const Screen1({super.key});
+class Screen1 extends StatefulWidget {
+  const Screen1({super.key,required });
 
+  @override
+  State<Screen1> createState() => _Screen1State();
+}
+
+class _Screen1State extends State<Screen1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,10 +83,10 @@ class Screen2 extends StatelessWidget {
         child: Center(
           child: InkWell(
             onTap: () {
-              Navigator.push(
+              Navigator.pop(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Screen3(),
+                  builder: (context) => Screen1(),
                 ),
               );
             },

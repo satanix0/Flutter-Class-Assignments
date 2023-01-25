@@ -82,12 +82,68 @@ class Screen3 extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Screen1(),
+                  builder: (context) => Screen4(),
                 ),
               );
             },
             child: Container(
               child: Text("Screen 3"),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Screen4 extends StatelessWidget {
+  const Screen4({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.blueGrey,
+      body: SafeArea(
+        child: Center(
+          child: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Screen5(),
+                ),
+              );
+            },
+            child: Container(
+              child: Text("Screen 4"),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Screen5 extends StatelessWidget {
+  const Screen5({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.blueGrey,
+      body: SafeArea(
+        child: Center(
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Screen2(),
+                ),
+              );
+            },
+            child: Container(
+              child: Text("Screen 5"),
             ),
           ),
         ),
