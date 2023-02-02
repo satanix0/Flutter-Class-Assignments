@@ -6,14 +6,17 @@ void main() {
 
 Future<String> makeToast() async {
   int randomValue = Random().nextInt(3);
+  print("I opened the toaster's lid.");
+  renmakeNotes();
+
   if (randomValue == 0) {
     await Future.delayed(
-      Duration(seconds: 2),
+      const Duration(seconds: 2),
     );
     return "success";
   } else if (randomValue == 1) {
     await Future.delayed(
-      Duration(seconds: 2),
+      const Duration(seconds: 1),
     );
     return "Failure";
   } else {
@@ -23,26 +26,26 @@ Future<String> makeToast() async {
 
 Future<void> doChores() async {
   makeNotes();
-  String makeToastFuture = await makeToast();
-  if (makeToastFuture == 'success') {
-    eatToast();
-  } else {
-    somethingWentWrong('Friend Took it');
+  try {
+    String makeToastFuture = await makeToast();
+    if (makeToastFuture == 'success') {
+      eatToast();
+    } else {
+      somethingWentWrong('Friend Took it');
+    }
+  } catch (err) {
+    print('$err Electricity Went Out');
   }
-  renmakeNotes();
+
   // pickToastFromKitchen();
 }
 
 void makeNotes() {
-  print('I am Printing Notes');
+  print('I am making Notes');
 }
 
 void renmakeNotes() {
   print('I am remaking Notes');
-}
-
-void pickToastFromKitchen() {
-  print('Took the Toast');
 }
 
 void somethingWentWrong(String reason) {

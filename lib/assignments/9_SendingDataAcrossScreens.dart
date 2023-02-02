@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 void main(List<String> args) {
@@ -11,7 +13,7 @@ void main(List<String> args) {
 }
 
 class Screen1 extends StatefulWidget {
-  const Screen1({super.key,required });
+  const Screen1({super.key});
 
   @override
   State<Screen1> createState() => _Screen1State();
@@ -31,7 +33,7 @@ class _Screen1State extends State<Screen1> {
                 children: [
                   InkWell(
                     onTap: () => {
-                      print("On Screen 1"),
+                      log("On Screen 1"),
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -47,7 +49,7 @@ class _Screen1State extends State<Screen1> {
                   ),
                   InkWell(
                     onTap: () => {
-                      print("On Screen 1"),
+                      log("On Screen 1"),
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -90,10 +92,7 @@ class Screen2 extends StatelessWidget {
                 ),
               );
             },
-            child: Container(
-              child:
-                  Text("At Screen 2 with beacuse Button $srcBtn was pressed"),
-            ),
+            child: Text("At Screen 2 with beacuse Button $srcBtn was pressed"),
           ),
         ),
       ),
@@ -101,30 +100,3 @@ class Screen2 extends StatelessWidget {
   }
 }
 
-class Screen3 extends StatelessWidget {
-  const Screen3({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.blueGrey,
-      body: SafeArea(
-        child: Center(
-          child: InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Screen1(),
-                ),
-              );
-            },
-            child: Container(
-              child: Text("Screen 3"),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}

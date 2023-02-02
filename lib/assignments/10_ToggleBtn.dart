@@ -21,6 +21,7 @@ class _MyHomeState extends State<MyHome> {
       home: Screen_1(
         sourceButton: 1,
         changeThemeToDark: changeMyAppTheme,
+        currentTheme: false,
       ),
     );
   }
@@ -34,11 +35,14 @@ class _MyHomeState extends State<MyHome> {
 
 class Screen_1 extends StatelessWidget {
   final int sourceButton;
-
+  final bool currentTheme;
   final Function(bool) changeThemeToDark;
 
   const Screen_1(
-      {super.key, required this.sourceButton, required this.changeThemeToDark});
+      {super.key,
+      required this.sourceButton,
+      required this.changeThemeToDark,
+      required this.currentTheme});
 
   @override
   Widget build(BuildContext context) {
@@ -48,15 +52,17 @@ class Screen_1 extends StatelessWidget {
           child: InkWell(
             onTap: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((context) => Screen_2(
-                          color: Colors.green,
-                          changeThemeToDark: changeThemeToDark))));
+                context,
+                MaterialPageRoute(
+                  builder: ((context) => Screen_2(
+                        color: Colors.green,
+                        changeThemeToDark: changeThemeToDark,
+                        myInitialTheme: currentTheme,
+                      )),
+                ),
+              );
             },
-            child: Container(
-              child: Text("Go to screen 2"),
-            ),
+            child: const Text("Go to screen 2"),
           ),
         ),
       ),
@@ -66,9 +72,13 @@ class Screen_1 extends StatelessWidget {
 
 class Screen_2 extends StatefulWidget {
   final Color color;
+  final bool myInitialTheme;
   final Function(bool) changeThemeToDark;
   const Screen_2(
-      {super.key, required this.color, required this.changeThemeToDark});
+      {super.key,
+      required this.color,
+      required this.changeThemeToDark,
+      required this.myInitialTheme});
 
   @override
   State<Screen_2> createState() => _Screen_2State();
@@ -81,6 +91,7 @@ class _Screen_2State extends State<Screen_2> {
   @override
   void initState() {
     myColor = widget.color;
+    myValue = widget.myInitialTheme;
     super.initState();
   }
 
@@ -108,10 +119,11 @@ class _Screen_2State extends State<Screen_2> {
                       print("On Screen 1");
                       Navigator.pop(context);
                     },
-                    child: Container(
-                      child: Text("Go to screen 1"),
-                    ),
+                    child: const Text("Go to screen 1"),
                   ),
+
+
+                  
                   SizedBox(
                     width: 250.0,
                     child: DefaultTextStyle(
@@ -140,10 +152,10 @@ class _Screen_2State extends State<Screen_2> {
     );
   }
 
-  void changeBackground(Color color) {
-    myColor = color;
-    print(color);
-    print("Reached here");
-    setState(() {});
-  }
+//  void changeBackground(Color color) {
+//     myColor = color;
+//     print(color);
+//     print("Reached here");
+//     setState(() {});
+//   }
 }
